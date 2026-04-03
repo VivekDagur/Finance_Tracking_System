@@ -1,10 +1,12 @@
 # Finance Tracking System Backend (FastAPI)
 
+
 This is a clean, interview-ready backend for tracking financial transactions.
 It demonstrates practical backend fundamentals: authentication, authorization, validation,
 clear architecture, and dynamic financial summaries.
 
 ## Tech Stack
+
 
 - **FastAPI**
 - **SQLite** + **SQLAlchemy ORM**
@@ -14,6 +16,7 @@ clear architecture, and dynamic financial summaries.
 - **Uvicorn**
 
 ## Project Structure
+
 
 ```
 finance_app/
@@ -43,6 +46,7 @@ README.md
 `.venv/` is your local Python virtual environment. It contains installed packages and should not be committed.
 
 ## Setup
+
 
 ```bash
 python -m venv .venv
@@ -193,6 +197,7 @@ Routes only handle HTTP input/output. Services hold business logic. Models + DB 
 
 ## Scaling path
 
+
 When traffic/data grows, common next steps are:
 - switch SQLite to PostgreSQL
 - add caching for expensive summaries
@@ -201,11 +206,13 @@ When traffic/data grows, common next steps are:
 
 ## Assumptions
 
+
 - Single currency (amount is a plain number)
 - Simple roles (no fine-grained permission matrix)
 - SQLite is sufficient for this demo; production would use Postgres + migrations
 
 ## Future Improvements
+
 
 - Add tests (pytest)
 - Add Alembic migrations
