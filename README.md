@@ -78,6 +78,7 @@ The database file (`finance.db`) is created automatically on startup (see `finan
   - `password` = password
 - Returns an access token. Use it as:
 
+
 ```http
 Authorization: Bearer <token>
 ```
