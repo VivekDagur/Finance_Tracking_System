@@ -1,7 +1,7 @@
 # Finance Tracking System Backend (FastAPI)
 
 
-This is a clean, interview-ready backend for tracking financial transactions.
+This is a clean, backend for tracking financial transactions.
 It demonstrates practical backend fundamentals: authentication, authorization, validation,
 clear architecture, and dynamic financial summaries.
 
@@ -43,7 +43,6 @@ requirements.txt
 README.md
 ```
 
-`.venv/` is your local Python virtual environment. It contains installed packages and should not be committed.
 
 ## Setup
 
@@ -156,7 +155,7 @@ Returns:
 - `category_breakdown`
 - `monthly_summary`
 
-### Why balance is calculated dynamically (important design decision)
+### Why balance is calculated dynamically
 
 We do **not** store balance in the database because it is derived from the source-of-truth data (transactions).  
 Derived values like balance are not stored to avoid inconsistency and race conditions.
