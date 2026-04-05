@@ -1,10 +1,16 @@
 import os
+import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 
 from jose import JWTError, jwt
 
-SECRET_KEY = os.getenv("SECRET_KEY", "CHANGE_ME_IN_PRODUCTION")
+# Generate a secure random key if not provided in production
+SECRET_KEY = os.getenv("SECRET_KEY") or secrets.token_urlsafe(32)
+# In production, always set SECRET_KEY environment variable
+if os.getenv("SECRET_KEY") is None:
+    import warnings
+    warnings.warn("SECRET_KEY not set in environment variables. Using auto-generated key. Set SECRET_KEY for production.")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
 

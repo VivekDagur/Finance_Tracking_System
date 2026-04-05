@@ -14,7 +14,7 @@ class TransactionBase(BaseModel):
     @validator("type")
     def validate_type(cls, v: str) -> str:
         if v not in {"income", "expense"}:
-            raise ValueError('type must be either "income" or "expense"')
+            raise ValueError('Transaction type must be either "income" or "expense"')
         return v
 
 
@@ -34,7 +34,7 @@ class TransactionUpdate(BaseModel):
         if v is None:
             return v
         if v not in {"income", "expense"}:
-            raise ValueError('type must be either "income" or "expense"')
+            raise ValueError('Transaction type must be either "income" or "expense"')
         return v
 
 
@@ -59,13 +59,13 @@ class TransactionFilterParams(BaseModel):
         if v is None:
             return v
         if v not in {"income", "expense"}:
-            raise ValueError('filter type must be either "income" or "expense"')
+            raise ValueError('Filter type must be either "income" or "expense"')
         return v
 
     @validator("date_to")
     def validate_date_range(cls, v: Optional[date], values):
         date_from = values.get("date_from")
         if v is not None and date_from is not None and v < date_from:
-            raise ValueError("date_to must be on or after date_from")
+            raise ValueError("End date must be on or after start date")
         return v
 

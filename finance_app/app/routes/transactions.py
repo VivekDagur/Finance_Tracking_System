@@ -47,7 +47,6 @@ def list_txs(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user),
 ):
-    # viewers can read their own; analysts/admin can also read (admin sees all)
     try:
         filters = TransactionFilterParams(
             type=type,
@@ -83,7 +82,6 @@ def summary(
             category=category,
             date_from=date_from,
             date_to=date_to,
-            # summary ignores pagination but schema requires these fields
             limit=10,
             offset=0,
         )
@@ -102,7 +100,7 @@ def get_tx(
 ):
     tx = get_transaction_by_id(db, current_user, transaction_id)
     if not tx:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Transaction not found")
     return api_response(True, "Transaction fetched", TransactionRead.model_validate(tx).model_dump())
 
 
@@ -115,7 +113,7 @@ def update_tx(
 ):
     tx = update_transaction(db, current_user, transaction_id, tx_in)
     if not tx:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Transaction not found")
     return api_response(True, "Transaction updated", TransactionRead.model_validate(tx).model_dump())
 
 
@@ -127,6 +125,6 @@ def delete_tx(
 ):
     ok = delete_transaction(db, current_user, transaction_id)
     if not ok:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Transaction not found")
     return api_response(True, "Transaction deleted", None)
 

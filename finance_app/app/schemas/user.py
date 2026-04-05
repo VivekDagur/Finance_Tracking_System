@@ -9,7 +9,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    password: str = Field(min_length=6, max_length=128)
+    password: str = Field(min_length=6, max_length=72, description="Password should have at most 72 characters")
 
 
 class UserRead(UserBase):

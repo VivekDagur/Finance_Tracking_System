@@ -18,8 +18,6 @@ logger = logging.getLogger(__name__)
 
 
 def create_transaction(db: Session, current_user: User, tx_in: TransactionCreate) -> Transaction:
-    # Database transactions ensure atomicity — either all changes succeed
-    # or none are applied, preventing inconsistent state.
     tx = Transaction(
         user_id=current_user.id,
         amount=tx_in.amount,
@@ -73,8 +71,6 @@ def update_transaction(db: Session, current_user: User, tx_id: int, tx_in: Trans
     for field, value in tx_in.model_dump(exclude_unset=True).items():
         setattr(tx, field, value)
 
-    # Database transactions ensure atomicity — either all changes succeed
-    # or none are applied, preventing inconsistent state.
     db.add(tx)
     db.commit()
     db.refresh(tx)
@@ -89,8 +85,6 @@ def delete_transaction(db: Session, current_user: User, tx_id: int) -> bool:
 
     # Database transactions ensure atomicity — either all changes succeed
     # or none are applied, preventing inconsistent state.
-    db.delete(tx)
-    db.commit()
     logger.info("Transaction deleted: transaction_id=%s user_id=%s", tx.id, current_user.id)
     return True
 
