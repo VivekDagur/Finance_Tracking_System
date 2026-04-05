@@ -1,5 +1,4 @@
-# Finance Tracking System Backend (FastAPI)
-
+# FinTrack API — Finance Tracking Backend Service (FastAPI)
 
 This is a clean, backend for tracking financial transactions.
 It demonstrates practical backend fundamentals: authentication, authorization, validation,
