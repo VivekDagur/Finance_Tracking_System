@@ -10,14 +10,18 @@ from .routes.auth import router as auth_router
 from .routes.transactions import router as transactions_router
 from .utils.logging_config import configure_logging
 from .utils.responses import api_response
-
+from fastapi.responses import PlainTextResponse
 
 def create_app() -> FastAPI:
+    
+    
     app = FastAPI(
         title="Finance Tracking System Backend",
         description="Simple but professional finance tracking API built with FastAPI.",
         version="0.1.0",
     )
+
+    
 
     # CORS configuration
     cors_origins = os.getenv("ALLOWED_ORIGINS", "*")
@@ -33,6 +37,10 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    @app.get("/", response_class=PlainTextResponse)
+    async def root():
+        return " Welcome to FinTrack API"
 
     @app.on_event("startup")
     def on_startup() -> None:
@@ -85,6 +93,7 @@ def create_app() -> FastAPI:
     app.include_router(transactions_router)
 
     return app
+
 
 
 app = create_app()
