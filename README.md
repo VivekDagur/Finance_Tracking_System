@@ -7,6 +7,7 @@ clear architecture, and dynamic financial summaries.
 ## Tech Stack
 
 
+
 - **FastAPI**
 - **SQLite** + **SQLAlchemy ORM**
 - **Pydantic** (request validation + response models)
