@@ -66,6 +66,6 @@ class TransactionFilterParams(BaseModel):
     def validate_date_range(cls, v: Optional[date], values):
         date_from = values.get("date_from")
         if v is not None and date_from is not None and v < date_from:
-            raise ValueError("End date must be on or after start date")
+            raise ValueError("End date must be on or after the start date")
         return v
 

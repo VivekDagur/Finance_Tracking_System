@@ -40,7 +40,7 @@ def create_app() -> FastAPI:
 
     @app.get("/", response_class=PlainTextResponse)
     async def root():
-        return " Welcome to FinTrack API"
+        return "Welcome to FinTrack API"
 
     @app.on_event("startup")
     def on_startup() -> None:
@@ -72,7 +72,7 @@ def create_app() -> FastAPI:
             elif error_type == "type_error":
                 message = f"{field} has invalid type. Please check the format"
             elif error_type == "json_invalid":
-                message = "Invalid input from user"
+                message = "Invalid input "
             elif error_type == "json_schema_validation_error":
                 message = f"Invalid data for {field}: {error['msg']}"
             else:
